@@ -1,0 +1,24 @@
+{
+    "patches": [
+        {
+            "label": "2025-11-26_13-52-13",
+            "content": "@@ -59,12 +59,336 @@\n         self\n+.id = id %0A        self.numero = numero%0A%0A    def getId(self):%0A        return self.id %0A    def getNumero(self):%0A        return self.numero%0A    %0A    def __str__(self):%0A        return f%22%7Bself.id%7D:%7Bself.nome%7D%22%0A    %0A%0A%0Aclass Contato:%0A    def __init__(self, nome: str):%0A        self.nome = nome %0A        self.fone = list%5BFone%5D = %5B%5D%0A\n",
+            "lines": "19"
+        },
+        {
+            "label": "2025-11-26_13-54-10",
+            "content": "@@ -1,12 +1,31 @@\n+@@ -1,74 +1,31 @@%0A-\n class Fone:%0A\n@@ -23,17 +23,19 @@\n ss Fone:\n-%0A\n+%250A\n     def \n@@ -75,332 +75,855 @@\n nt):\n-%0A\n+%250A \n       \n-  self.id = id %0A        self.numero = numero%0A    %0A    def getId(self):%0A        return self.id%0A    def getNumero(self):%0A        return self.numero%0A    %0A    def __str__(self):%0A        return f%22%7Bself.id%7D:%7Bself.nome%7D%22%0A    %0A    def isValid(self) -%3E bool:%0A        fone = Fone %0A        if not self.id or self.numero:%0A       \n+%0A+@@ -67,433 +67,4 @@%250A%0A  self%0A+%250A-%0A .id %0A@@ -29,17 +29,19 @@%0A id = id %0A-%250A%0A+%25250A%0A         %0A@@ -56,30 +56,34 @@%0A ero = numero%0A-%250A%0A+%25250A%0A     %0A-%250A%0A+%25250A%0A     def getI%0A@@ -86,25 +86,27 @@%0A getId(self):%0A-%250A%0A+%25250A%0A         retu%0A@@ -115,17 +115,19 @@%0A  self.id%0A-%250A%0A+%25250A%0A     def %0A@@ -138,25 +138,27 @@%0A umero(self):%0A-%250A%0A+%25250A%0A         retu%0A@@ -171,22 +171,26 @@%0A f.numero%0A-%250A%0A+%25250A%0A     %0A-%250A%0A+%25250A%0A     def %0A@@ -203,17 +203,19 @@%0A _(self):%0A-%250A%0A+%25250A%0A         %0A@@ -226,20 +226,28 @@%0A rn f%0A-%2522%257B%0A+%252522%25257B%0A self.id%0A-%257D:%257B%0A+%25257D:%25257B%0A self%0A@@ -255,16 +255,24 @@%0A nome%0A-%257D%2522%250A%0A+%25257D%252522%25250A%0A     %0A-%250A%0A+%25250A%0A     %0A@@ -294,16 +294,20 @@%0A f) -%0A-%253E%0A+%25253E%0A  bool:%0A-%250A%0A+%25250A%0A     %0A@@ -322,17 +322,19 @@%0A  = Fone %0A-%250A%0A+%25250A%0A         %0A@@ -363,17 +363,19 @@%0A .numero:%0A-%250A%0A+%25250A%0A         %0A@@ -382,33 +382,35 @@%0A\n     \n@@ -928,32 +928,45 @@\n    return False%0A\n+-%250A%0A+%25250A%0A \n         if any(c\n@@ -969,88 +969,165 @@\n ny(c\n-.isalpha() for c in self.numero):%0A            return False%0A        return True%0Aclass\n+%0A@@ -442,17 +442,19 @@%0A numero):%0A-%250A%0A+%25250A%0A         %0A@@ -469,17 +469,19 @@%0A rn False%0A-%250A%0A+%25250A%0A         %0A@@ -495,10 +495,13 @@%0A True%0A-%250A%0A+%25250A%0A class%0A+%250A%0A\n",
+            "lines": "102"
+        },
+        {
+            "label": "2025-11-26_13-58-02",
+            "content": "@@ -488,13 +488,12 @@\n n True%0Aclass\n- \n",
+            "lines": "21"
+        },
+        {
+            "label": "2025-11-26_13-58-29",
+            "content": "class Fone:\n    def __init__(self, id: str, numero: int):\n        self.id = id \n        self.numero = numero\n    \n    def getId(self):\n        return self.id\n    def getNumero(self):\n        return self.numero\n    \n    def __str__(self):\n        return f\"{self.id}:{self.nome}\"\n    \n    def isValid(self) -> bool:\n        fone = Fone \n        if not self.id or self.numero:\n            return False\n        if any(c.isalpha() for c in self.numero):\n            return False\n        return True\nclass ",
+            "lines": "21"
+        }
+    ]
+}
