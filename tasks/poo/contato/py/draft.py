@@ -1,5 +1,5 @@
 class Fone:
-    def __init__(self, id: str, number: int):
+    def __init__(self, id: str , number: str):
         self.id = id 
         self.number = number
 
@@ -12,12 +12,12 @@ class Fone:
         return f"{self.id}:{self.number}"
     
     def isValid(self) -> bool:
-        fone = fone
-        if not self.id or self.number:
+        if self.id == "":
             return False
-        if any(c.isalpha() for c in self.number):
+        if not self.number.isdigit():
             return False
-        
+        return True
+
     def __str__(self):
         return f"{self.id}:{self.number}"
 
@@ -28,9 +28,21 @@ class Contat:
         self.fones: list[Fone] = []
         self.favorited: bool = False
 
-    def addFone(self, id: str, number:int):
-        if self.fone is None:
-            print("fail: lista de telefones vazia")
+    def addFone(self, id: str, number: str):
+        fone = Fone(id, number)
+
+        if not fone.isValid():
+            print("fail: telefone invalido")
+            return
+        
+        self.fones.append(fone)
+
+    def rmFone(self, index: int): 
+        if index < 0 or index >= len(self.fones): 
+            print("fail: indice invalido")
+        
+        self.fones.pop(index)
+
 
 
     def __str__(self):
@@ -52,7 +64,10 @@ def main():
         elif args[0] == "init":
             ctt = Contat(args[1])
         elif args[0] == "add":
-            name: 
+           id = args[1]
+           number = args[2]
+
+           ctt.addFone(id, number)
         else:
             print("fail: comando invalido! ")
 
