@@ -32,7 +32,7 @@ class Contat:
         fone = Fone(id, number)
 
         if not fone.isValid():
-            print("fail: telefone invalido")
+            print("fail: invalid number")
             return
         
         self.fones.append(fone)
@@ -66,8 +66,10 @@ def main():
         elif args[0] == "add":
            id = args[1]
            number = args[2]
-
            ctt.addFone(id, number)
+        elif args[0] == "rm":
+            r = int(args[1])
+            ctt.rmFone(r)
         else:
             print("fail: comando invalido! ")
 
