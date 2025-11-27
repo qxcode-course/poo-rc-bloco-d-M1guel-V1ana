@@ -34,13 +34,13 @@ class Contat:
 
     
     def rmFone(self, index: int):
-        if index < 0 or index >= 0:
+        if index < 0 or index >= len(self.__contacts):
             print("fail: indice invalido")
             return
         
         self.__fones.pop(index)
 
-    def toogleFavorited(self):
+    def toogleFavorited(self) -> bool:
         self.__favorited = not self.__favorited
     
     def isFavorited(self):
@@ -61,14 +61,15 @@ class Contat:
     
 class Agenda:
     def __init__(self):
-        self.__contacts = list[Contat] = []
+        self.__contacts: list[Contat] = []
 
 
     def findPosByName(self, name: str):
+
         
 
     
-    def addContact(self, name: str, fone: list[Fones]):
+    def addContact(self, name: str, fone: list[Fone]):
 
         f = Contat(name, fones)
 
@@ -84,7 +85,7 @@ class Agenda:
 
 
 def main():
-    agd = None
+    agd = Agenda()
 
 
     while True:
