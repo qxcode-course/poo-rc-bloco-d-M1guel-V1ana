@@ -39,12 +39,16 @@ class Contat:
             print("fail: indice invalido")
         
         self.__fones.pop(index)
+    
+    def toogleFavorited(self):
+        self.__favorited = not self.__favorited
 
 
 
     def __str__(self):
         lista_fones = ", ".join(str(fone) for fone in self.__fones)
-        return f"- {self.__name} [{lista_fones}]"
+        favorite = "@" if self.__favorited else "-"
+        return f"{favorite} {self.__name} [{lista_fones}]"
 
 def main():
     ctt = None
@@ -67,8 +71,9 @@ def main():
         elif args[0] == "rm":
             r = int(args[1])
             ctt.rmFone(r)
+        elif args[0] == "tfav":
+            ctt.toogleFavorited()
         else:
             print("fail: comando invalido! ")
-
 
 main()
