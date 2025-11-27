@@ -66,12 +66,28 @@ class Agenda:
 
     def findPosByName(self, name: str):
 
+        for i in range (len(self.__contacts)):
+            if self.__contacts[i].getName() == name:
+                return i
         
+        return -1
 
-    
+        
     def addContact(self, name: str, fone: list[Fone]):
+        if self.findPosByName(name) != -1:
+            print("fail: contato já existe ")
+            return
+        c = Contat(name)
+        for c in fone:
+            c.addFone(fone.getId(), fone.getName())
 
-        f = Contat(name, fones)
+        
+        self.__contacts.append(c)
+
+    def __str__(self):
+        cotacts = 
+
+            
 
 
 
@@ -98,6 +114,8 @@ def main():
         elif args[0] == "show":
             print(agd)
         elif args[0] == "add":
+            name = args[1]
+            agd.addContact(name, [])
         else:
             print("fail: comando invalido")
         
