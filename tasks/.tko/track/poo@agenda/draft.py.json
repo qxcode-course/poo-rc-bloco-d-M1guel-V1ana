@@ -17,8 +17,13 @@
         },
         {
             "label": "2025-11-26_13-58-29",
-            "content": "class Fone:\n    def __init__(self, id: str, numero: int):\n        self.id = id \n        self.numero = numero\n    \n    def getId(self):\n        return self.id\n    def getNumero(self):\n        return self.numero\n    \n    def __str__(self):\n        return f\"{self.id}:{self.nome}\"\n    \n    def isValid(self) -> bool:\n        fone = Fone \n        if not self.id or self.numero:\n            return False\n        if any(c.isalpha() for c in self.numero):\n            return False\n        return True\nclass ",
+            "content": "@@ -44,16 +44,16 @@\n  num\n-b\n er\n+o\n : \n-str\n+int\n ):%0A \n@@ -64,18 +64,16 @@\n    self.\n-__\n id = id \n@@ -90,25 +90,23 @@\n elf.\n-__\n num\n-b\n er\n+o\n  = num\n-b\n er\n+o\n %0A   \n@@ -126,8 +126,375 @@\n Id(self)\n+:%0A        return self.id%0A    def getNumero(self):%0A        return self.numero%0A    %0A    def __str__(self):%0A        return f%22%7Bself.id%7D:%7Bself.nome%7D%22%0A    %0A    def isValid(self) -%3E bool:%0A        fone = Fone %0A        if not self.id or self.numero:%0A            return False%0A        if any(c.isalpha() for c in self.numero):%0A            return False%0A        return True%0Aclass \n",
             "lines": "21"
+        },
+        {
+            "label": "2025-11-27_16-49-39",
+            "content": "class Fone:\n    def __init__(self, id: str, number: str):\n        self.__id = id \n        self.__number = number\n    \n    def getId(self)",
+            "lines": "6"
         }
     ]
 }
