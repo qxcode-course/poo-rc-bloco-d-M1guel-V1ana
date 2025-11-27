@@ -13,7 +13,7 @@ class Fone:
     
     def isValid(self) -> bool:
         p = "0123456789()."
-        return all((c in p for in self.number))
+        return all((c in p for c in self.__number))
 
     def __str__(self):
         return f"{self.__id}:{self.__number}"
