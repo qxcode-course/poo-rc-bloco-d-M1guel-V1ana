@@ -22,8 +22,13 @@
         },
         {
             "label": "2025-11-27_16-49-39",
-            "content": "class Fone:\n    def __init__(self, id: str, number: str):\n        self.__id = id \n        self.__number = number\n    \n    def getId(self)",
+            "content": "@@ -134,272 +134,4 @@\n elf)\n-:%0A        return self.__id%0A    def getNumber(self):%0A        return self.__number%0A    %0A    def isValid(self) -%3E bool:%0A        p = %22123456789().%22%0A        return all(c in p for c in self.__number)%0A    %0A    def __str__(self):%0A        return f%22%7Bself.__id%7D %7Bself.__number%7D%22%0A\n",
             "lines": "6"
+        },
+        {
+            "label": "2025-11-27_16-54-06",
+            "content": "class Fone:\n    def __init__(self, id: str, number: str):\n        self.__id = id \n        self.__number = number\n    \n    def getId(self):\n        return self.__id\n    def getNumber(self):\n        return self.__number\n    \n    def isValid(self) -> bool:\n        p = \"123456789().\"\n        return all(c in p for c in self.__number)\n    \n    def __str__(self):\n        return f\"{self.__id} {self.__number}\"\n",
+            "lines": "16"
         }
     ]
 }
