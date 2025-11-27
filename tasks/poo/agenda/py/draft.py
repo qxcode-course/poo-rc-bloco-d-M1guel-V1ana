@@ -9,8 +9,95 @@ class Fone:
         return self.__number
     
     def isValid(self) -> bool:
-        p = "123456789()."
+        p = "0123456789()."
         return all(c in p for c in self.__number)
     
     def __str__(self):
         return f"{self.__id} {self.__number}"
+
+
+
+class Contat:
+    def __init__(self, name: str):
+        self.__name = name
+        self.__fones:  list[Fone] = []
+        self.__favorited: bool = False
+
+    def addFone(self, id: str, number: str):
+        fone = Fone(id, number)
+
+        if fone.isValid():
+            self.__fones.append(fone)
+        if not fone.isValid():
+            print("fail: invalid number")
+            return
+
+    
+    def rmFone(self, index: int):
+        if index < 0 or index >= 0:
+            print("fail: indice invalido")
+            return
+        
+        self.__fones.pop(index)
+
+    def toogleFavorited(self):
+        self.__favorited = not self.__favorited
+    
+    def isFavorited(self):
+        return self.__favorited
+    def getFones(self) -> list[Fone]:
+        return self.__fones
+    def getName(self):
+        return self.__name
+    def setName(self, name: str):
+        self.__name = name
+    
+    def __str__(self):
+        list_fom = ", ".join(str(fone) for fone in self.__fones)
+        fav = "@" if self.__favorited else "-"
+        return f"{fav} {self.__name} [{list_fom}]"
+
+
+    
+class Agenda:
+    def __init__(self):
+        self.__contacts = list[Contat] = []
+
+
+    def findPosByName(self, name: str):
+        
+
+    
+    def addContact(self, name: str, fone: list[Fones]):
+
+        f = Contat(name, fones)
+
+
+
+
+
+
+
+
+
+
+
+
+def main():
+    agd = None
+
+
+    while True:
+        line = input()
+        print("$" + line)
+        args: list[str] = line.split(" ")
+
+        if args[0] == "end":
+            break
+        elif args[0] == "show":
+            print(agd)
+        elif args[0] == "add":
+        else:
+            print("fail: comando invalido")
+        
+main()
