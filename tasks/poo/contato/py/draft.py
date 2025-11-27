@@ -1,53 +1,50 @@
 class Fone:
     def __init__(self, id: str , number: str):
-        self.id = id 
-        self.number = number
+        self.__id = id 
+        self.__number = number
 
     def getId(self):
-        return self.id 
+        return self.__id 
     def getNumber(self):
-        return self.number
+        return self.__number
 
     def __str__(self):
-        return f"{self.id}:{self.number}"
+        return f"{self.__id}:{self.__number}"
     
     def isValid(self) -> bool:
-        if self.id == "":
-            return False
-        if not self.number.isdigit():
-            return False
-        return True
+        p = "0123456789()."
+        return all((c in p for in self.number))
 
     def __str__(self):
-        return f"{self.id}:{self.number}"
+        return f"{self.__id}:{self.__number}"
 
 
 class Contat:
     def __init__(self, name: str):
-        self.name = name
-        self.fones: list[Fone] = []
-        self.favorited: bool = False
+        self.__name = name
+        self.__fones: list[Fone] = []
+        self.__favorited: bool = False
 
     def addFone(self, id: str, number: str):
         fone = Fone(id, number)
 
+        if fone.isValid():
+           self.__fones.append(fone) # print("fail: invalid number")
         if not fone.isValid():
             print("fail: invalid number")
-            return
-        
-        self.fones.append(fone)
+            return 
 
     def rmFone(self, index: int): 
-        if index < 0 or index >= len(self.fones): 
+        if index < 0 or index >= len(self.__fones): 
             print("fail: indice invalido")
         
-        self.fones.pop(index)
+        self.__fones.pop(index)
 
 
 
     def __str__(self):
-        lista_fones = ", ".join(str(fone) for fone in self.fones)
-        return f"- {self.name} [{lista_fones}]"
+        lista_fones = ", ".join(str(fone) for fone in self.__fones)
+        return f"- {self.__name} [{lista_fones}]"
 
 def main():
     ctt = None

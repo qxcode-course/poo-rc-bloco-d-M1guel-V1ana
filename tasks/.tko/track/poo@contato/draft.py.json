@@ -122,7 +122,22 @@
         },
         {
             "label": "2025-11-26_23-29-37",
-            "content": "class Fone:\n    def __init__(self, id: str , number: str):\n        self.id = id \n        self.number = number\n\n    def getId(self):\n        return self.id \n    def getNumber(self):\n        return self.number\n\n    def __str__(self):\n        return f\"{self.id}:{self.number}\"\n    \n    def isValid(self) -> bool:\n        if self.id == \"\":\n            return False\n        if not self.number.isdigit():\n            return False\n        return True\n\n    def __str__(self):\n        return f\"{self.id}:{self.number}\"\n\n\nclass Contat:\n    def __init__(self, name: str):\n        self.name = name\n        self.fones: list[Fone] = []\n        self.favorited: bool = False\n\n    def addFone(self, id: str, number: str):\n        fone = Fone(id, number)\n\n        if not fone.isValid():\n            print(\"fail: invalid number\")\n            return\n        \n        self.fones.append(fone)\n\n    def rmFone(self, index: int): \n        if index < 0 or index >= len(self.fones): \n            print(\"fail: indice invalido\")\n        \n        self.fones.pop(index)\n\n\n\n    def __str__(self):\n        lista_fones = \", \".join(str(fone) for fone in self.fones)\n        return f\"- {self.name} [{lista_fones}]\"\n\ndef main():\n    ctt = None\n\n    while True:\n        line = input()\n        print(\"$\" + line)\n        args: list[str] = line.split(\" \")\n\n        if args[0] == \"end\":\n            break\n        elif args[0] ==\"show\":\n            print(ctt)\n        elif args[0] == \"init\":\n            ctt = Contat(args[1])\n        elif args[0] == \"add\":\n           id = args[1]\n           number = args[2]\n           ctt.addFone(id, number)\n        elif args[0] == \"rm\":\n            r = int(args[1])\n            ctt.rmFone(r)\n        else:\n            print(\"fail: comando invalido! \")\n\n\nmain()",
+            "content": "@@ -742,16 +742,20 @@\n      if \n+not \n fone.isV\n@@ -777,32 +777,8 @@\n     \n-self.fone.append(fone) #\n  pri\n@@ -835,92 +835,40 @@\n     \n-if not fone.isValid():%0A            print(%22fail: invalid number%22)%0A            return \n+%0A        self.fones.append(fone)\n %0A%0A  \n",
+            "lines": "77"
+        },
+        {
+            "label": "2025-11-27_12-22-15",
+            "content": "@@ -816,32 +816,51 @@\n nvalid number%22)%0A\n+            return%0A\n         if not f\n",
+            "lines": "78"
+        },
+        {
+            "label": "2025-11-27_12-22-24",
+            "content": "@@ -778,17 +778,16 @@\n elf.fone\n-s\n .append(\n",
+            "lines": "77"
+        },
+        {
+            "label": "2025-11-27_12-23-29",
+            "content": "class Fone:\n    def __init__(self, id: str , number: str):\n        self.id = id \n        self.number = number\n\n    def getId(self):\n        return self.id \n    def getNumber(self):\n        return self.number\n\n    def __str__(self):\n        return f\"{self.id}:{self.number}\"\n    \n    def isValid(self) -> bool:\n        if self.id == \"\":\n            return False\n        if not self.number.isdigit():\n            return False\n        return True\n\n    def __str__(self):\n        return f\"{self.id}:{self.number}\"\n\n\nclass Contat:\n    def __init__(self, name: str):\n        self.name = name\n        self.fones: list[Fone] = []\n        self.favorited: bool = False\n\n    def addFone(self, id: str, number: str):\n        fone = Fone(id, number)\n\n        if fone.isValid():\n           self.fones.append(fone) # print(\"fail: invalid number\")\n        if not fone.isValid():\n            print(\"fail: invalid number\")\n            return \n\n    def rmFone(self, index: int): \n        if index < 0 or index >= len(self.fones): \n            print(\"fail: indice invalido\")\n        \n        self.fones.pop(index)\n\n\n\n    def __str__(self):\n        lista_fones = \", \".join(str(fone) for fone in self.fones)\n        return f\"- {self.name} [{lista_fones}]\"\n\ndef main():\n    ctt = None\n\n    while True:\n        line = input()\n        print(\"$\" + line)\n        args: list[str] = line.split(\" \")\n\n        if args[0] == \"end\":\n            break\n        elif args[0] ==\"show\":\n            print(ctt)\n        elif args[0] == \"init\":\n            ctt = Contat(args[1])\n        elif args[0] == \"add\":\n           id = args[1]\n           number = args[2]\n           ctt.addFone(id, number)\n        elif args[0] == \"rm\":\n            r = int(args[1])\n            ctt.rmFone(r)\n        else:\n            print(\"fail: comando invalido! \")\n\n\nmain()",
             "lines": "77"
         }
     ]
