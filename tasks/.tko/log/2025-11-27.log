@@ -8,3 +8,9 @@
 2025-11-27 19:17:24, MOVE, v:1, k:poo@contato, mode:BACK
 2025-11-27 19:17:26, MOVE, v:1, k:poo@agenda, mode:PICK
 2025-11-27 19:17:41, MOVE, v:1, k:poo@agenda, mode:BACK
+2025-11-27 22:22:13, MOVE, v:1, k:poo@contato, mode:PICK
+2025-11-27 22:22:14, EXEC, v:1, k:poo@contato, mode:FULL, rate:100, size:81
+2025-11-27 22:22:15, MOVE, v:1, k:poo@contato, mode:BACK
+2025-11-27 22:22:32, SELF, v:1, k:poo@contato, rate:100, alone:7
+2025-11-27 22:25:56, MOVE, v:1, k:poo@contato, mode:PICK
+2025-11-27 22:26:06, MOVE, v:1, k:poo@contato, mode:BACK
