@@ -3,18 +3,18 @@ from operator import index
 
 class Fone:
     def __init__(self, id: str, number: str):
-        self.__id = id 
+        self.__id = id
         self.__number = number
-    
+
     def getId(self):
         return self.__id
     def getNumber(self):
         return self.__number
-    
+
     def isValid(self) -> bool:
         p = "0123456789()."
         return all(c in p for c in self.__number)
-    
+
     def __str__(self):
         return f"{self.__id}:{self.__number}"
 
@@ -34,18 +34,18 @@ class Contat:
         else:
             print("fail: invalid number")
 
-    
+
     def rmFone(self, index: int):
         if index < 0 or index >= len(self.__fones):
             print("fail: indice invalido")
             return
-        
+
         self.__fones.pop(index)
 
     def toogleFavorited(self) -> bool:
         self.__favorited = not self.__favorited
         return self.__favorited
-    
+
     def isFavorited(self):
         return self.__favorited
     def getFones(self) -> list[Fone]:
@@ -54,19 +54,19 @@ class Contat:
         return self.__name
     def setName(self, name: str):
         self.__name = name
-    
+
     def __str__(self):
          p = "@" if self.__favorited else "-"
          names_ctt = ", ".join(str(fone) for fone in self.__fones)
          return f"{p} {self.__name} [{names_ctt}]"
 
 
-    
+
 class Agenda:
     def __init__(self):
         self.__contacts: list[Contat] = []
 
-    def getContacts(self) -> list[Contat | None]:
+    def getContacts(self) -> list[Contat]:
         return self.__contacts
 
     def findByName(self, name: str) -> int:
@@ -84,8 +84,15 @@ class Agenda:
         for contato in self.__contacts:
             if pattern in contato.getName().lower():
                 encontrado.append(contato)
+                continue
 
+            for fone in contato.getFones():
+                if pattern in fone.getNumber():
+                    encontrado.append(contato)
+                    break
+        encontrado.sort(key=lambda c: c.getName().lower())
         return encontrado
+
 
     def getContact(self, name: str):
         pos = self.findByName(name)
@@ -111,7 +118,7 @@ class Agenda:
         return True
 
     def __str__(self):
-        order = sorted(self.__contacts, key=lambda c: c.getName().lower())
+        order = sorted(self.__contacts, key= lambda  c: c.getName().lower())
         return "\n".join(str(contato) for contato in order)
 
 
@@ -157,5 +164,15 @@ def main():
 
             for contato in en:
                 print(contato)
+        elif args[0] == "tfav":
+            contato = agd.getContact(args[1])
+
+            if contato:
+                contato.toogleFavorited()
+            else:
+                print("fail: contato nao encotrado")
+        elif args[0] == "fav":
+
+
 
 main()
