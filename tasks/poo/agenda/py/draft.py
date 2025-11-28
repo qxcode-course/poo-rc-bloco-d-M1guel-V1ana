@@ -13,7 +13,7 @@ class Fone:
         return all(c in p for c in self.__number)
     
     def __str__(self):
-        return f"{self.__id} {self.__number}"
+        return f"{self.__id}:{self.__number}"
 
 
 
@@ -63,54 +63,53 @@ class Agenda:
     def __init__(self):
         self.__contacts: list[Contat] = []
 
-    def findPosByName(self, name: str) -> int:
-        l_name = name.lower
+    def getContacts(self) -> list[Contat]:
+        return self.__contacts
+
+    def findByName(self, name: str) -> int:
+        name = name.lower()
 
         for i in range(len(self.__contacts)):
-            if self.__contacts[i].getName().lower() == lower.name():
+            if self.__contacts[i].getName().lower() == name:
                 return i
-            
-            return -1 
+        return -1
 
-    def getContacts(self, name):
-        pos = self.findPosByName(name)
+    def getContact(self, name: str):
+        pos = self.findByName(name)
 
         if pos == -1:
-            return None 
+            return None
         return self.__contacts[pos]
-    
-        
-    def addContact(self, name: str, fone: list[Fone]):
-        if self.findPosByName(name) != -1:
-            print("fail: contato já existe ")
+
+    def addContact(self, name: str):
+        if self.findByName(name) != -1:
+            print("fail: contato já existe")
             return
 
-        c = Contat(name)
-        self.__contacts.append(c)
+        self.__contacts.append(Contat(name))
 
-    def rmContact(self, name):
-       pos = self.findPosByName(name)
-       
-       if pos == -1:
+    def rmContact(self, name: str) -> bool:
+        pos = self.findByName(name)
+
+        if pos == -1:
+            print("fail: contato não encontrado")
             return False
-       self.__contacts.pop(pos)
-       return True
+        self.__contacts.pop(pos)
+        return True
+
     def __str__(self):
-        return f"\n".join(str(contato) for contato in self.__contacts)
-
-    
-
-
+        order = sorted(self.__contacts, key=lambda c: c.getName().lower())
+        return "\n".join(str(contato) for contato in order)
 
 
 def main():
-    agd = Agenda()
 
+    agd = Agenda()
 
     while True:
         line = input()
         print("$" + line)
-        args: list[str] = line.split(" ")
+        args: list[str] = line.split()
 
         if args[0] == "end":
             break
@@ -118,14 +117,15 @@ def main():
             print(agd)
         elif args[0] == "add":
             name = args[1]
-            agd.addContact(name, [])
+            agd.addContact(name)
 
-            contato = agd.getName(name)
-            for token in args[2]:
-                if ":" in token:
-                    op, num = token.split(":")
-                    contato.addFone(op, num)
-        else:
-            print("fail: comando invalido")
-        
+            contato = agd.getContact(name)
+            if contato is None:
+                continue
+            for token in args[2:]:
+                op, num = token.split(":")
+                contato.addFone(op, num)
+
+
+
 main()
