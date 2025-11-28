@@ -117,11 +117,11 @@ def main():
             print(agd)
         elif args[0] == "add":
             name = args[1]
-            agd.addContact(name)
-
             contato = agd.getContact(name)
             if contato is None:
-                continue
+                agd.addContact(name)
+                contato = agd.getContact(name)
+
             for token in args[2:]:
                 op, num = token.split(":")
                 contato.addFone(op, num)
