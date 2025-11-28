@@ -1,3 +1,6 @@
+from operator import index
+
+
 class Fone:
     def __init__(self, id: str, number: str):
         self.__id = id 
@@ -63,7 +66,7 @@ class Agenda:
     def __init__(self):
         self.__contacts: list[Contat] = []
 
-    def getContacts(self) -> list[Contat]:
+    def getContacts(self) -> list[Contat | None]:
         return self.__contacts
 
     def findByName(self, name: str) -> int:
@@ -72,7 +75,17 @@ class Agenda:
         for i in range(len(self.__contacts)):
             if self.__contacts[i].getName().lower() == name:
                 return i
+
         return -1
+    def search(self, pattern: str) -> list[Contat]:
+        pattern = pattern.lower()
+        encontrado = []
+
+        for contato in self.__contacts:
+            if pattern in contato.getName().lower():
+                encontrado.append(contato)
+
+        return encontrado
 
     def getContact(self, name: str):
         pos = self.findByName(name)
@@ -125,7 +138,24 @@ def main():
             for token in args[2:]:
                 op, num = token.split(":")
                 contato.addFone(op, num)
+        elif args[0] == "rmFone":
+            name = args[1]
+            index = int(args[2])
 
+            contato = agd.getContact(name)
 
+            if contato is None:
+                print("fail: contato nao encontrado")
+            else:
+                contato.rmFone(index)
+        elif args[0] == "rm":
+            name = args[1]
+            agd.rmContact(name)
+        elif args[0] == "search":
+            p = args[1]
+            en = agd.search(p)
+
+            for contato in en:
+                print(contato)
 
 main()
