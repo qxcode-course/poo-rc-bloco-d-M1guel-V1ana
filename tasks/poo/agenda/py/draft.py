@@ -1,6 +1,3 @@
-from operator import index
-
-
 class Fone:
     def __init__(self, id: str, number: str):
         self.__id = id
@@ -17,8 +14,6 @@ class Fone:
 
     def __str__(self):
         return f"{self.__id}:{self.__number}"
-
-
 
 class Contat:
     def __init__(self, name: str):
@@ -59,7 +54,6 @@ class Contat:
          p = "@" if self.__favorited else "-"
          names_ctt = ", ".join(str(fone) for fone in self.__fones)
          return f"{p} {self.__name} [{names_ctt}]"
-
 
 
 class Agenda:
@@ -171,8 +165,11 @@ def main():
                 contato.toogleFavorited()
             else:
                 print("fail: contato nao encotrado")
-        elif args[0] == "fav":
-
-
+        elif args[0] == "favs":
+            for contato in agd.getContacts():
+                if contato.isFavorited():
+                    print(contato)
+        else:
+            print("fail: comando invalido ")
 
 main()
